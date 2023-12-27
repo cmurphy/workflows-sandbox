@@ -1,0 +1,15 @@
+name: Create an issue
+
+on: workflow_dispatch
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: create issue
+        uses: sigstore/sigstore-probers/.github/actions/create-issue@main
+        with:
+          issue_repository: github.com/cmurphy/workflows-sandbox
+          issue_type: FAILURE

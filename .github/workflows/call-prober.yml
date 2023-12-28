@@ -1,0 +1,27 @@
+name: Test Prober
+
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
+jobs:
+  prober:
+    uses: sigstore/sigstore-probers/.github/workflows/reusable-prober.yml@main
+    secrets:
+      PAGERDUTY_INTEGRATION_KEY: "fake"
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
+    with:
+      enable_staging: true
+      rekor_url: "https://rekor.sigstage.dev"
+      fulcio_url: "https://fulcio.sigstage.dev"
+      oidc_url: "https://oauth2.sigstage.dev/auth"
+      tuf_repo: "https://tuf-repo-cdn.sigstage.dev"
+      tuf_preprod_repo: "https://tuf-repo-cdn.sigstage.dev"
+      tuf_root_url: "https://tuf-repo-cdn.sigstage.dev/root.json"
+      triggerPagerDutyTest: false
